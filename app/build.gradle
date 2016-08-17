@@ -1,0 +1,251 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+apply plugin: 'com.android.model.application'
+
+def ICONV_PATH = '../../ThirdParty/OpenSource2/libiconv-1.13.1'
+def SQLITE_NDS_PATH = '../../ThirdParty/OpenSource2/sqlite_nds'
+def PROJ_PATH = '../../ThirdParty/OpenSource2/proj-4.9.1'
+def GEOS_PATH = '../../ThirdParty/OpenSource2/geos-3.4.2'
+def LIBXML2_PATH = '../../ThirdParty/OpenSource2/libxml2-2.9.1'
+def LZMA_PATH = '../../ThirdParty/OpenSource2/xz-5.1.3alpha'
+def SPATIALITE_PATH = '../../ThirdParty/OpenSource2/libspatialite-4.3.0'
+def RAPIDJSON_INCL = '../../ThirdParty/OpenSource2/rapidjson/include'
+def BOOST_PATH = '../../ThirdParty/OpenSource2/boost_1_55_0'
+def LIBCURL_PATH = '../../ThirdParty/OpenSource2/curl-7.37.0'
+def LIBZIP_PATH = '../../ThirdParty/OpenSource2/libzip-android'
+
+println "test file path:" + file("${ICONV_PATH}").absolutePath
+
+model {
+
+    repositories {
+        libs(PrebuiltLibraries) {
+            iconv {
+                headers.srcDir "${ICONV_PATH}/include"
+                headers.srcDir "${ICONV_PATH}/libcharset/include"
+                binaries.withType(SharedLibraryBinary) {
+                    sharedLibraryFile = file("${ICONV_PATH}/lib/${targetPlatform.getName()}/libiconv.so")
+                }
+            }
+
+            sqlite_nds {
+                headers.srcDir "${SQLITE_NDS_PATH}/include"
+                binaries.withType(SharedLibraryBinary) {
+                    sharedLibraryFile = file("${SQLITE_NDS_PATH}/lib/${targetPlatform.getName()}/libsqlite_nds.so")
+                }
+            }
+
+            proj {
+                headers.srcDir "${PROJ_PATH}/src"
+                binaries.withType(SharedLibraryBinary) {
+                    sharedLibraryFile = file("${PROJ_PATH}/lib/${targetPlatform.getName()}/libproj.so")
+                }
+            }
+
+            geos {
+                headers.srcDir "${GEOS_PATH}/include"
+                binaries.withType(SharedLibraryBinary) {
+                    sharedLibraryFile = file("${GEOS_PATH}/lib/${targetPlatform.getName()}/libgeos.so")
+                }
+            }
+
+            xml2 {
+                headers.srcDir "${LIBXML2_PATH}/include"
+                binaries.withType(SharedLibraryBinary) {
+                    sharedLibraryFile = file("${LIBXML2_PATH}/lib/${targetPlatform.getName()}/libxml2.so")
+                }
+            }
+
+            lzma {
+                headers.srcDir "${LZMA_PATH}/src/liblzma/api"
+                binaries.withType(SharedLibraryBinary) {
+                    sharedLibraryFile = file("${LZMA_PATH}/lib/${targetPlatform.getName()}/liblzma.so")
+                }
+            }
+
+            spatialite {
+                headers.srcDir "${SPATIALITE_PATH}/headers"
+                binaries.withType(SharedLibraryBinary) {
+                    sharedLibraryFile = file("${SPATIALITE_PATH}/lib/${targetPlatform.getName()}/libspatialite.so")
+                }
+            }
+
+            boost_system {
+                headers.srcDir "${BOOST_PATH}"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${BOOST_PATH}/lib/${targetPlatform.getName()}/libboost_system.a")
+                }
+            }
+
+            boost_thread {
+                headers.srcDir "${BOOST_PATH}"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${BOOST_PATH}/lib/${targetPlatform.getName()}/libboost_thread.a")
+                }
+            }
+
+            boost_atomic {
+                headers.srcDir "${BOOST_PATH}"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${BOOST_PATH}/lib/${targetPlatform.getName()}/libboost_atomic.a")
+                }
+            }
+
+            libcurl {
+                headers.srcDir "${LIBCURL_PATH}/include"
+                binaries.withType(SharedLibraryBinary) {
+                    sharedLibraryFile = file("${LIBCURL_PATH}/lib/${targetPlatform.getName()}/libcurl.so")
+                }
+            }
+
+            libzip {
+                headers.srcDir "${LIBZIP_PATH}"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${LIBZIP_PATH}/lib/${targetPlatform.getName()}/libzip.a")
+                }
+            }
+        }
+    }
+
+    android {
+        compileSdkVersion = 23
+        buildToolsVersion = "23.0.3"
+
+        defaultConfig {
+            applicationId = "com.fastmap.dataapi"
+            minSdkVersion.apiLevel = 15
+            targetSdkVersion.apiLevel = 23
+            versionCode = 1
+            versionName = "1.0"
+        }
+
+        ndk {
+            moduleName = 'Editor'
+            stl = 'gnustl_static'
+            cppFlags.add('-frtti')
+            cppFlags.add('-fexceptions')
+            CFlags.add('')
+            cppFlags.add('-I' + file("${RAPIDJSON_INCL}"))
+            ldLibs.addAll(['android', 'log', 'z'])
+            ldFlags.add('')
+            abiFilters.addAll(['armeabi-v7a'])
+            debuggable = false
+            renderscriptNdkMode = false
+        }
+
+        sources {
+            main {
+                jni {
+//                    exportedHeaders {
+//                        srcDir "${RAPIDJSON_INCL}"
+//                    }
+
+                    dependencies {
+                        library 'boost_system' linkage 'static'
+                        library 'boost_thread' linkage 'static'
+                        library 'boost_atomic' linkage 'static'
+                        library 'libzip' linkage 'static'
+
+                        library 'libcurl' linkage 'shared'
+                        library 'lzma' linkage 'shared'
+                        library 'xml2' linkage 'shared'
+                        library 'geos' linkage 'shared'
+                        library 'proj' linkage 'shared'
+                        library 'iconv' linkage 'shared'
+                        library 'sqlite_nds' linkage 'shared'
+                        library 'spatialite' linkage 'shared'
+                    }
+                }
+                jniLibs {
+                    // for shared lib, lib need to be pushed to the target too
+                    // Once libs are copied into app/src/main/jniLibs directory,
+                    // Android Studio will pack them into APK's lib/ directory
+                    // Here we like to avoid another duplication by pointing
+                    // to the files that containing our libs' distribution location
+                    // so the same file is used by compiler at host, also packed
+                    // into APk to be used at Target (phone/tablet)
+                    source {
+                        srcDir "${ICONV_PATH}/lib"
+                        srcDir "${SQLITE_NDS_PATH}/lib"
+                        srcDir "${PROJ_PATH}/lib"
+                        srcDir "${GEOS_PATH}/lib"
+                        srcDir "${LIBXML2_PATH}/lib"
+                        srcDir "${LZMA_PATH}/lib"
+                        srcDir "${SPATIALITE_PATH}/lib"
+                        srcDir "${LIBCURL_PATH}/lib"
+                    }
+                }
+            }
+        }
+
+//        sourceSets.main {
+//            //jniLibs.srcDir 'src/main/libs'
+//            jni.srcDirs = ['src/main/jni', '${RAPIDJSON_INCL}']
+//            //jni.srcDirs = [] //disable automatic ndk-build call
+//        }
+
+//        def ndkDir = android.ndkDirectory.getAbsolutePath()
+//
+//        task ndkBuild(type: Exec) {
+//            if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+//                commandLine 'ndk-build.cmd', '-C', 'main','NDK_DEBUG=1'
+//            } else {
+//                commandLine ndkDir + '/ndk-build', '-C', file('src/main/jni').absolutePath
+//            }
+//        }
+//
+//        tasks.withType(JavaCompile) {
+//            compileTask -> compileTask.dependsOn ndkBuild
+//        }
+
+        buildTypes {
+            release {
+                minifyEnabled false
+                shrinkResources true
+                //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                proguardFiles.add(file('proguard-android.txt'))
+                debuggable = true
+                ndk {
+                    debuggable = true
+                }
+                signingConfig = $('android.signingConfigs.release')
+                //buildConfigField "boolean", "LOG_DEBUG", "false"
+                //buildConfigField = ['boolean', 'LOG_DEBUG', 'false']
+            }
+            debug {
+                debuggable = false
+                //isJniDebuggable = true
+                //buildConfigField "boolean", "LOG_DEBUG", "true"
+            }
+        }
+    }
+
+    android.productFlavors {
+        create('arm') {
+            ndk.abiFilters.add('armeabi');
+        }
+
+        create('arm7') {
+            ndk.abiFilters.add('armeabi-v7');
+        }
+
+        // To include all cpu architectures, leaves abiFilters empty
+        create('all')
+    }
+
+    android.signingConfigs {
+            create('release') {
+                keyAlias = 'androidreleasekey'
+                keyPassword = 'android'
+                storeFile = file('sign.jks')
+                storePassword = 'android'
+                storeType = 'jks'
+            }
+    }
+}
+
+dependencies {
+    println rootProject.getName()
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+}
