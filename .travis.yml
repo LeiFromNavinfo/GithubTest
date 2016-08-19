@@ -3,12 +3,18 @@ env:
      - NDK_VERSION=r9d
 
 language: android
+
 sudo: false
+
 android:
   components:
     - build-tools-19.1.0
     - android-19
     - sys-img-armeabi-v7a-android-19
+
+before_install:
+    - wget http://dl.google.com/android/ndk/android-ndk-$NDK_VERSION-linux-x86_64.bin
+
 script:
     - cd DataApi
     - TERM=dumb ./gradlew :app:assembleDebug
