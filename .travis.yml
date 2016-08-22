@@ -15,10 +15,14 @@ android:
 
 before_install:
     - wget http://dl.google.com/android/ndk/android-ndk-$NDK_VERSION-linux-x86_64.bin
-
+    - chmod +x android-ndk-$NDK_VERSION-linux-x86_64.bin
+    - ./android-ndk-$NDK_VERSION-linux-x86_64.bin
+    - ./android-ndk-$NDK_VERSION-linux-x86_64.bin | egrep -v ^Extracting
+    - export ANDROID_NDK_HOME='pwd'/android-ndk-$NDK_VERSION
+    
 script:
     - cd DataApi
-    - TERM=dumb ./gradlew :app:assembleDebug
+    - TERM=dumb ./gradlew :app:assembleDebug --info
     - android list targets
     - echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
     - emulator -avd test -no-skin -no-audio -no-window &
