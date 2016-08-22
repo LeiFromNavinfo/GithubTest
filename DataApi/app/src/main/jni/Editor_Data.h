@@ -4,7 +4,7 @@
 #include <string>
 #include "Editor.h"
 #include <document.h>
-#include "model.h"
+#include "Model.h"
 using namespace rapidjson;
 
 namespace Editor 
