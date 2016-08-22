@@ -108,7 +108,7 @@ model {
 
     android {
         compileSdkVersion = 19
-        buildToolsVersion = "19.0.1"
+        buildToolsVersion = "19.1.0"
 
         defaultConfig {
             applicationId = "com.fastmap.dataapi"
