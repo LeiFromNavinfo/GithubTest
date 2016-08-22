@@ -1,6 +1,6 @@
 env:
    global:
-     - NDK_VERSION=r9d
+     - NDK_VERSION=r10e
 
 language: android
 
