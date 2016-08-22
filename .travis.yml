@@ -18,7 +18,8 @@ before_install:
     - chmod +x android-ndk-$NDK_VERSION-linux-x86_64.bin
     - ./android-ndk-$NDK_VERSION-linux-x86_64.bin | egrep -v ^Extracting
     - export ANDROID_NDK_HOME='pwd'/android-ndk-$NDK_VERSION
-    
+    - export PATH=${PATH}:${ANDROID_NDK_HOME}   
+ 
 script:
     - cd DataApi
     - TERM=dumb ./gradlew :app:assembleDebug --info
