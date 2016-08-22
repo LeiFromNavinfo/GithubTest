@@ -6,6 +6,8 @@ language: android
 
 sudo: false
 
+jdk: oraclejdk8
+
 android:
   components:
     - build-tools-19.1.0
@@ -17,12 +19,12 @@ before_install:
     - wget http://dl.google.com/android/ndk/android-ndk-$NDK_VERSION-linux-x86_64.bin
     - chmod +x android-ndk-$NDK_VERSION-linux-x86_64.bin
     - ./android-ndk-$NDK_VERSION-linux-x86_64.bin | egrep -v ^Extracting
-    - export ANDROID_NDK_HOME='pwd'/android-ndk-$NDK_VERSION
+    - export ANDROID_NDK_HOME=`pwd`/android-ndk-$NDK_VERSION
     - export PATH=${PATH}:${ANDROID_NDK_HOME}   
  
 script:
     - cd DataApi
-    - TERM=dumb ./gradlew :app:assembleDebug --info
+    - TERM=dumb ./gradlew build --info
     - android list targets
     - echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
     - emulator -avd test -no-skin -no-audio -no-window &
