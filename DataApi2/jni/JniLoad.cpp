@@ -4,7 +4,7 @@
 #include "Editor/Logger.h"
 #include "Editor/Geometry.h"
 #include "Editor/Editor.h"
-#include "Editor/Model.h"
+#include "Editor/model.h"
 #include "Editor/DataTransfor.h"
 #include "Editor/Editor_ProjectManager.h"
 #include "Editor/Editor_MetaDataManager.h"
