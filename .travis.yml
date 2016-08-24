@@ -27,7 +27,7 @@ script:
    # - emulator -avd test -no-skin -no-audio -no-window &
  
 deploy:
-   provider:releases
+   provider: releases
    api_key: b73b730508d1a81a25af30ad9563573575c82fd1
    file: DataApi2/libs/armeabi-v7a/libEditor.so DataApi2/libs/armeabi-v7a/libcurl.so
    skin_cleanup: true
