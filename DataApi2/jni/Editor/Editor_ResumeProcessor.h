@@ -2,7 +2,7 @@
 #define EDITOR_RESUME_PROCESSOR_H
 
 #include "Editor.h"
-#include "Model.h"
+#include "model.h"
 
 namespace Editor
 {
