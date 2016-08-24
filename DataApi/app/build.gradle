@@ -198,20 +198,7 @@ model {
 //        }
 
         buildTypes {
-            release {
-                minifyEnabled false
-                shrinkResources true
-                //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-                proguardFiles.add(file('proguard-android.txt'))
-                debuggable = true
-                ndk {
-                    debuggable = true
-                }
-                signingConfig = $('android.signingConfigs.release')
-                //buildConfigField "boolean", "LOG_DEBUG", "false"
-                //buildConfigField = ['boolean', 'LOG_DEBUG', 'false']
-            }
-            debug {
+              debug {
                 debuggable = false
                 //isJniDebuggable = true
                 //buildConfigField "boolean", "LOG_DEBUG", "true"
@@ -219,28 +206,6 @@ model {
         }
     }
 
-    android.productFlavors {
-        create('arm') {
-            ndk.abiFilters.add('armeabi');
-        }
-
-        create('arm7') {
-            ndk.abiFilters.add('armeabi-v7');
-        }
-
-        // To include all cpu architectures, leaves abiFilters empty
-        create('all')
-    }
-
-    android.signingConfigs {
-            create('release') {
-                keyAlias = 'androidreleasekey'
-                keyPassword = 'android'
-                storeFile = file('sign.jks')
-                storePassword = 'android'
-                storeType = 'jks'
-            }
-    }
 }
 
 dependencies {
