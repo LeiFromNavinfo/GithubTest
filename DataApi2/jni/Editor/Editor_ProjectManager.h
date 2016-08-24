@@ -2,7 +2,7 @@
 #define FM_SDK_Editor_Manager_h
 
 #include "Editor.h"
-#include "Model.h"
+#include "model.h"
 #include "Locker.h"
 #include "geos.h"
 #include "geos/operation/union/CascadedPolygonUnion.h"
