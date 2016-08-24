@@ -22,7 +22,7 @@
 #include "Geometry.h"
 #include "Logger.h"
 #include "Tools.h"
-#include "Model.h"
+#include "model.h"
 #include <set>
 
 namespace geos{namespace geom{
