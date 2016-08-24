@@ -1,0 +1,7 @@
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := libzip
+LOCAL_SRC_FILES := $(LIBZIP_PATH)/lib/armeabi-v7a/libzip.a
+LOCAL_EXPORT_C_INCLUDES := $(LIBZIP_INCL)
+	
+include $(PREBUILT_STATIC_LIBRARY)
