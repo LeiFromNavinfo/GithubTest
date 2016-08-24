@@ -12,7 +12,7 @@
 #include <stringbuffer.h>
 #include <writer.h>
 #include <map>
-#include "Model.h"
+#include "model.h"
 #include "BussinessConstants.h"
 #include <math.h>
 #include "GeometryCalculator.h"
