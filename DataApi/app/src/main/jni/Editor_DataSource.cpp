@@ -1,7 +1,7 @@
 ﻿#include "Editor.h"
 #include "Editor_Data.h"
 #include "fstream"
-#include "model.h"
+#include "Model.h"
 #include "Editor_ProjectManager.h"
 #include "BussinessConstants.h"
 #include "Editor_APIWrapper.h"
