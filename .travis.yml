@@ -21,6 +21,7 @@ before_install:
 script:
     - cd DataApi2/jni
     - ndk-build
+    - cat /home/travis/.rvm/gems/ruby-1.9.3-p551/gems/octokit-4.3.0/lib/octokit/client/authorizations.rb
    # - cat /home/travis/build.sh
    # - android list targets
    # - echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
