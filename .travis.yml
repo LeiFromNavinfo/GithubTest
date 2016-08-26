@@ -17,6 +17,7 @@ before_install:
     - export PATH=${PATH}:${ANDROID_NDK_HOME}   
     - echo ${PATH}
     - echo `pwd` 
+    - echo $PAS
 
 script:
     - cd DataApi2/jni
