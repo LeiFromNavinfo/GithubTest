@@ -17,7 +17,6 @@ before_install:
     - export PATH=${PATH}:${ANDROID_NDK_HOME}   
     - echo ${PATH}
     - echo `pwd` 
-    - echo $PAS
 
 script:
     - cd DataApi2/jni
@@ -29,8 +28,8 @@ script:
  
 deploy:
    provider: releases
-   user: panhuidan
-   password: $PAS
+   user: "panhuidan"
+   password: "$PAS"
    #api_key: 
    #  secure: fcea86f297f06d8d1008d930e43f85ae2590be2e
    file: DataApi2/libs/armeabi-v7a/libEditor.so DataApi2/libs/armeabi-v7a/libcurl.so
