@@ -2,21 +2,16 @@ env:
    global:
      - NDK_VERSION=r9d
 
-language: android
+language: c
 
 sudo: false
 
 jdk: oraclejdk8
 
-android:
-  components:
-    - build-tools-19.1.0
-    - android-19
-    - sys-img-armeabi-v7a-android-19
-    - extra-android-m2repository
-
 before_install:
     - wget http://dl.google.com/android/ndk/android-ndk-$NDK_VERSION-linux-x86_64.tar.bz2
+    #- chmod +x android-ndk-$NDK_VERSION-linux-x86_64.bin
+    #- ./android-ndk-$NDK_VERSION-linux-x86_64.bin | egrep -v ^Extracting
     - tar --bzip2 -xf android-ndk-$NDK_VERSION-linux-x86_64.tar.bz2
     - export ANDROID_NDK_HOME=`pwd`/android-ndk-$NDK_VERSION
     - export PATH=${PATH}:${ANDROID_NDK_HOME}   
@@ -24,9 +19,23 @@ before_install:
     - echo `pwd` 
 
 script:
-    - cd DataApi
-    - TERM=dumb ./gradlew build --info
-    - cat /home/travis/build.sh
-    - android list targets
-    - echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
-    - emulator -avd test -no-skin -no-audio -no-window &
+    - cd DataApi2/jni
+    - ndk-build
+   # - cat /home/travis/build.sh
+   # - android list targets
+   # - echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
+   # - emulator -avd test -no-skin -no-audio -no-window &
+ 
+deploy:
+   provider: releases
+   user: "panhuidan"
+   password: "$PAS"
+   #api_key: 
+   #  secure: fcea86f297f06d8d1008d930e43f85ae2590be2e
+   file: DataApi2/libs/armeabi-v7a/libEditor.so DataApi2/libs/armeabi-v7a/libcurl.so
+   skin_cleanup: true
+  # on:
+  #    tags: true
+  #    all_branches: true
+
+
