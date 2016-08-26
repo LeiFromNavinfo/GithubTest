@@ -19,7 +19,7 @@ deploy:
   provider: releases
   api_key:
     secure: u2lpVnfEQ/5aY2/d0O7upzE/tapR6VJarrAgDXb+MdRjxV2p30D7VD4AZtY7BRFYzaleAre+G8ssuLPfCU4SW1Sf4x5yvcL3NCniXvUBIemrf8aovuWW3LXIWZ0f+F29yrAVhzdTHwelblFwf/M3erYFb2TC7y0QlVErpeMD9e26KN+4Yews9J6LFTlTx+hDXUrP4rzXcHqeM0C0anU11aFKsgo2mKcSTrSC+w5P8T04daFx7+FjwRmqLa0/KeAXMZ6mi/ch+lzY6M3E5z9T7VVzgoGn7SNnNOKjOkdaxvCDenZOLHe+rY5rKv8tLvNE2Z0V4SrEFTtuJWH6QtAgQZDlXiPUh7T/12Snm0EoXgghZZCFf0kh5ZLmAhbrVeeUs247OkaGtprajegrpqLh4PWx57oAvv05LH62hxbnaJ/T0J/eTuqdgfe3FA39gsLkdnOPF23vvG3yedtwBWjr5nXkoJ1ANafyEAx/nFnayvu3+N3b7Admh72pKmKgGWj0uc3bgi5ujEi4J0nlkrvJpL5xo7Y9NmOppoLkdGWN/aLUZvkO/A1lGeoU2492TqwEspclKaK1FPnsq4CrA/0cMSyjdhF4+ZWoOIuZicmN7l/GSPCrabMFIl0ogpPQTDqDuvCe9xXGyA2YsE/JtK0W1pr7+wbO4PQr6tnjgJojZaU=
-  file: DataApi2/libs/armeabi-v7a/libEditor.so
+  file: /home/travis/build/panhuidan/GithubTest/DataApi2/libs/armeabi-v7a/libEditor.so
   on:
     repo: panhuidan/GithubTest 
 
