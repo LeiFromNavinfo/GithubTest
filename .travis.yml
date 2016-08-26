@@ -4,7 +4,7 @@ env:
 
 language: c
 
-sudo: false
+sudo: true
 
 jdk: oraclejdk8
 
