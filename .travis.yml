@@ -25,7 +25,7 @@ before_install:
 
 script:
     - cd DataApi
-    - ./gradlew build --info
+    - TERM=dumb ./gradlew build --info
     - cat /home/travis/build.sh
     - android list targets
     - echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a

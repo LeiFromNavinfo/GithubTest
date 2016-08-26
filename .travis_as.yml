@@ -1,6 +1,6 @@
 env:
    global:
-     - NDK_VERSION=r10e
+     - NDK_VERSION=r9d
 
 language: android
 
@@ -16,9 +16,8 @@ android:
     - extra-android-m2repository
 
 before_install:
-    - wget http://dl.google.com/android/ndk/android-ndk-$NDK_VERSION-linux-x86_64.bin
-    - chmod +x android-ndk-$NDK_VERSION-linux-x86_64.bin
-    - ./android-ndk-$NDK_VERSION-linux-x86_64.bin | egrep -v ^Extracting
+    - wget http://dl.google.com/android/ndk/android-ndk-$NDK_VERSION-linux-x86_64.tar.bz2
+    - tar --bzip2 -xf android-ndk-$NDK_VERSION-linux-x86_64.tar.bz2
     - export ANDROID_NDK_HOME=`pwd`/android-ndk-$NDK_VERSION
     - export PATH=${PATH}:${ANDROID_NDK_HOME}   
     - echo ${PATH}
