@@ -41,9 +41,9 @@ before_script:
 
 script:
     - cd DataApi
-    - TERM=dumb ./gradlew prepareDebugDependencies
-    - TERM=dumb ./gradlew assembleDebug parallel_test test -n 1
-    - TERM=dumb ./gradlew app::connectedAndroidTest --info
+    #- TERM=dumb ./gradlew prepareDebugDependencies
+    - TERM=dumb ./gradlew assembleDebug
+    #- TERM=dumb ./gradlew app::connectedAndroidTest --info
     - cd ..
 
 deploy:
