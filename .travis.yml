@@ -15,8 +15,8 @@ script:
 - cd DataApi2/jni
 - ndk-build
 - ls -l /home/travis/build/panhuidan/GithubTest/DataApi2/libs/armeabi-v7a
-#- cd ../..
-#- echo `pwd`
+- cd ../..
+- echo `pwd`
 before_deploy:
 - export RELEASE_PKG_FILE=$(ls DataApi2/libs/armeabi-v7a/libEditor.so)
 - echo "deploying $RELEASE_PKG_FILE to GitHub releases"
@@ -28,7 +28,7 @@ deploy:
      #"DataApi2/libs/armeabi-v7a/*.so"
      #- DataApi2/libs/armeabi-v7a/libEditor.so
      #- DataApi2/libs/armeabi-v7a/libcurl.so
-  file_glob: true
+  #file_glob: true
   skip_cleanup: true
   on: 
     #branch: master
