@@ -16,8 +16,7 @@ script:
 - ndk-build
 - ls -l /home/travis/build/panhuidan/GithubTest/DataApi2/libs/armeabi-v7a
 before_deploy: 
-  -export SO_FILE=$(ls DataApi2/libs/*/*.so)
-  -echo ${SO_FILE}
+  -echo ${ls DataApi2/libs/*/*.so)}
 deploy:
   skip_cleanup: true
   provider: releases
@@ -26,8 +25,9 @@ deploy:
   file: 
     - "DataApi2/libs/armeabi-v7a/libEditor.so"
     - "DataApi2/libs/armeabi-v7a/libcurl.so"
-  file_glob: true
+  # file_glob: true
   on:
     branch: master
     repo: panhuidan/GithubTest 
-
+    # tags: true
+    # all_branches: true
