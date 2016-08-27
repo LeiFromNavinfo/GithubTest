@@ -23,7 +23,7 @@ deploy:
   file: 
     - "DataApi2/libs/armeabi-v7a/libEditor.so"
     - "DataApi2/libs/armeabi-v7a/libcurl.so"
-  # file_glob: true
+  file_glob: true
   on:
     branch: master
     repo: panhuidan/GithubTest 
