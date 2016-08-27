@@ -27,5 +27,5 @@ deploy:
   on:
     #branch: master
     #repo: panhuidan/GithubTest 
-    tags: true
+    #tags: true
     all_branches: true
