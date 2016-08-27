@@ -107,13 +107,13 @@ model {
     }
 
     android {
-        compileSdkVersion = 19
-        buildToolsVersion = "19.1.0"
+        compileSdkVersion = 23
+        buildToolsVersion = "23.0.3"
 
         defaultConfig {
             applicationId = "com.fastmap.dataapi"
             minSdkVersion.apiLevel = 15
-            targetSdkVersion.apiLevel = 19
+            targetSdkVersion.apiLevel = 23
             versionCode = 1
             versionName = "1.0"
         }
