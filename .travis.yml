@@ -6,7 +6,7 @@ language: android
 
 sudo: false
 
-jdk: oraclejdk8
+jdk: oraclejdk7
 
 cache:
   directories:
@@ -42,7 +42,7 @@ before_script:
 script:
     - cd DataApi
     - TERM=dumb ./gradlew prepareDebugDependencies
-    - TERM=dumb ./gradlew assembleDebug --info --debug --stacktrace
+    - TERM=dumb ./gradlew assembleDebug --info --debug
     - TERM=dumb ./gradlew app::connectedAndroidTest --info
     - cd ..
 
