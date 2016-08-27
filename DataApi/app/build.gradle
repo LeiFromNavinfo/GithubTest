@@ -138,7 +138,7 @@ model {
 //                    exportedHeaders {
 //                        srcDir "${RAPIDJSON_INCL}"
 //                    }
-
+		     println "5"
                     dependencies {
                         library 'boost_system' linkage 'static'
                         library 'boost_thread' linkage 'static'
@@ -154,6 +154,7 @@ model {
                         library 'sqlite_nds' linkage 'shared'
                         library 'spatialite' linkage 'shared'
                     }
+                    println "6"
                 }
                 jniLibs {
                     // for shared lib, lib need to be pushed to the target too
@@ -163,7 +164,8 @@ model {
                     // to the files that containing our libs' distribution location
                     // so the same file is used by compiler at host, also packed
                     // into APk to be used at Target (phone/tablet)
-                    source {
+                    println "7"
+		     source {
                         srcDir "${ICONV_PATH}/lib"
                         srcDir "${SQLITE_NDS_PATH}/lib"
                         srcDir "${PROJ_PATH}/lib"
@@ -173,29 +175,10 @@ model {
                         srcDir "${SPATIALITE_PATH}/lib"
                         srcDir "${LIBCURL_PATH}/lib"
                     }
+                    println "8"
                 }
             }
         }
-
-//        sourceSets.main {
-//            //jniLibs.srcDir 'src/main/libs'
-//            jni.srcDirs = ['src/main/jni', '${RAPIDJSON_INCL}']
-//            //jni.srcDirs = [] //disable automatic ndk-build call
-//        }
-
-//        def ndkDir = android.ndkDirectory.getAbsolutePath()
-//
-//        task ndkBuild(type: Exec) {
-//            if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-//                commandLine 'ndk-build.cmd', '-C', 'main','NDK_DEBUG=1'
-//            } else {
-//                commandLine ndkDir + '/ndk-build', '-C', file('src/main/jni').absolutePath
-//            }
-//        }
-//
-//        tasks.withType(JavaCompile) {
-//            compileTask -> compileTask.dependsOn ndkBuild
-//        }
 
         buildTypes {
               debug {
@@ -215,4 +198,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     println "3"
     compile 'com.android.support:appcompat-v7:23.4.0'
+    println "4"
 }
