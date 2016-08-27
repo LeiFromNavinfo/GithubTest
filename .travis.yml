@@ -15,8 +15,6 @@ script:
 - cd DataApi2/jni
 - ndk-build
 - ls -l /home/travis/build/panhuidan/GithubTest/DataApi2/libs/armeabi-v7a
-before_deploy: 
-  -ls DataApi2/libs/*/*.so
 deploy:
   skip_cleanup: true
   provider: releases
