@@ -5,6 +5,9 @@ env:
      - CCACHE: 1
      - CCACHE_MAXSIZE: 384M
 
+notifications:
+     email: true
+
 language: android
 
 #sudo: false
@@ -20,6 +23,7 @@ cache:
   - $HOME/android-ndk-$NDK_VERSION
 android:
   components:
+    - platform-tools
     - tools
     - build-tools-23.0.1
     - android-23
@@ -54,6 +58,7 @@ script:
     #- TERM=dumb ./gradlew prepareDebugDependencies
     - ./gradlew clean :app:assembleDebug --debug --info
     #- TERM=dumb ./gradlew app::connectedAndroidTest --info
+    - cat home/travis/build/panhuidan/GithubTest/DataApi/app/build/tmp/compileEditorArmeabi-v7aDebugSharedLibraryEditorMainCpp/output.txt
     - cd ..
 
 after_script:
