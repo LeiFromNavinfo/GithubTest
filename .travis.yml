@@ -13,7 +13,7 @@ cache:
   - /usr/local/android-sdk
   - ~/.gradle/wrapper
   - ~/.gradle/caches
-  - ~/android-ndk-$NDK_VERSION 
+  - `pwd`/android-ndk-$NDK_VERSION
 android:
   components:
     - tools
@@ -45,7 +45,7 @@ script:
     - cd DataApi
     - chmod +x ./gradlew; ls -l gradlew; ./gradlew wrapper -v
     #- TERM=dumb ./gradlew prepareDebugDependencies
-    - TERM=dumb ./gradlew clean :assembleDebug --debug --info
+    - TERM=dumb ./gradlew clean :app:ssembleDebug --debug --info
     #- TERM=dumb ./gradlew app::connectedAndroidTest --info
     - cd ..
 
