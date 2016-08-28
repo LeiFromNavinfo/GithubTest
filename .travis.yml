@@ -13,7 +13,7 @@ cache:
   - /usr/local/android-sdk
   - ~/.gradle/wrapper
   - ~/.gradle/caches
-  - `pwd`/android-ndk-$NDK_VERSION
+  - ~/android-ndk-$NDK_VERSION
 android:
   components:
     - tools
