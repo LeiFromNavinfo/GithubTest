@@ -31,7 +31,7 @@ before_install:
     - export PATH=${PATH}:${ANDROID_NDK_HOME}   
     - echo ${PATH}
     - echo `pwd` 
-
+    - ulimit -a && free -m
 #before_script:
     #- android list targets
     #- echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
