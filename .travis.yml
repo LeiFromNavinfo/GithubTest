@@ -32,8 +32,8 @@ before_install:
     - echo ${PATH}
     - echo `pwd` 
     - ulimit -a && free -m
-    - export GRADLE_OPTS="-Xmx768m -Xms256m -Xss1m"
-    #- export GRADLE_OPTS="-Xmx2048m"
+    #- export GRADLE_OPTS="-Xmx768m -Xms256m -Xss1m"
+    - export GRADLE_OPTS="-Xmx2048m"
 #before_script:
     #- android list targets
     #- echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
