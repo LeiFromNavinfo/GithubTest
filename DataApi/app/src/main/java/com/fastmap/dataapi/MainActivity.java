@@ -22,8 +22,6 @@ public class MainActivity extends AppCompatActivity {
         String ss = DataNativeApi.GetDataPath();
 
         Log.e(TAG, ss);
-
-	Log.e(TAG2, ss);
     }
 
     static
