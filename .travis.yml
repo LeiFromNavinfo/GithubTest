@@ -58,7 +58,7 @@ script:
     #- TERM=dumb ./gradlew prepareDebugDependencies
     - ./gradlew clean :app:assembleDebug --debug --info
     #- TERM=dumb ./gradlew app::connectedAndroidTest --info
-    - cat home/travis/build/panhuidan/GithubTest/DataApi/app/build/tmp/compileEditorArmeabi-v7aDebugSharedLibraryEditorMainCpp/output.txt
+    - cat /home/travis/build/panhuidan/GithubTest/DataApi/app/build/tmp/compileEditorArmeabi-v7aDebugSharedLibraryEditorMainCpp/output.txt
     - cd ..
 
 after_script:

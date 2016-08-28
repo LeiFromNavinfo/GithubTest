@@ -10,7 +10,7 @@
 #include <document.h>
 #include <stringbuffer.h>
 #include <writer.h>
-#include "model.h"
+#include "Model.h"
 
 #ifndef WIN32
     #include <sys/time.h>
