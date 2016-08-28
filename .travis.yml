@@ -14,12 +14,12 @@ sudo: required
 
 jdk: oraclejdk7
 
-cache:
-  directories:
-  - /usr/local/android-sdk
-  - ~/.gradle/wrapper
-  - ~/.gradle/caches
-  - $HOME/android-ndk-$NDK_VERSION
+#cache:
+#  directories:
+#  - /usr/local/android-sdk
+#  - ~/.gradle/wrapper
+#  - ~/.gradle/caches
+#  - $HOME/android-ndk-$NDK_VERSION
 android:
   components:
     - platform-tools
