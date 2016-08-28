@@ -53,9 +53,9 @@ before_install:
 
 script:
     - cd DataApi
-    - chmod +x ./gradlew; ls -l gradlew; ./gradlew wrapper -v
+    #- chmod +x ./gradlew; ls -l gradlew; ./gradlew wrapper -v
     #- TERM=dumb ./gradlew prepareDebugDependencies
-    - ./gradlew clean :app:assembleDebug --debug --info
+    - ./gradlew clean :app:assembleDebug
     #- TERM=dumb ./gradlew app::connectedAndroidTest --info
     #- cat /home/travis/build/panhuidan/GithubTest/DataApi/app/build/tmp/compileEditorArmeabi-v7aDebugSharedLibraryEditorMainCpp/output.txt
     - cd ..
@@ -72,5 +72,5 @@ deploy:
   on: 
     #branch: master
     #repo: panhuidan/GithubTest 
-    tags: true
+    #tags: true
     all_branches: true
