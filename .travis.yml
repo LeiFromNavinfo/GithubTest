@@ -1,6 +1,9 @@
 env:
    global:
      - NDK_VERSION=r9d
+     - TERM: dumb
+     - CCACHE: 1
+     - CCACHE_MAXSIZE: 384M
 
 language: android
 
@@ -13,7 +16,7 @@ cache:
   - /usr/local/android-sdk
   - ~/.gradle/wrapper
   - ~/.gradle/caches
-  - ~/android-ndk-$NDK_VERSION
+  - $HOME/android-ndk-$NDK_VERSION
 android:
   components:
     - tools
@@ -33,9 +36,11 @@ before_install:
     - echo `pwd` 
     - ulimit -s 1082768
     - ulimit -a && free -m
+    - df -h
     #- export GRADLE_OPTS="-Xmx768m -Xms256m -Xss1m"
     - export GRADLE_OPTS="-Xmx2048m"
-#before_script:
+before_script:
+     - ccache --zero-stats
     #- android list targets
     #- echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
     #- emulator -avd test -no-skin -no-audio -no-window &
@@ -46,9 +51,12 @@ script:
     - cd DataApi
     - chmod +x ./gradlew; ls -l gradlew; ./gradlew wrapper -v
     #- TERM=dumb ./gradlew prepareDebugDependencies
-    - TERM=dumb ./gradlew clean :app:assembleDebug --debug --info
+    - ./gradlew clean :app:assembleDebug --debug --info
     #- TERM=dumb ./gradlew app::connectedAndroidTest --info
     - cd ..
+
+after_script:
+    - ccache --show-stats
 
 deploy:
   provider: releases
