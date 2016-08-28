@@ -31,6 +31,7 @@ before_install:
     - export PATH=${PATH}:${ANDROID_NDK_HOME}   
     - echo ${PATH}
     - echo `pwd` 
+    - ulimit -s 1082768
     - ulimit -a && free -m
     #- export GRADLE_OPTS="-Xmx768m -Xms256m -Xss1m"
     - export GRADLE_OPTS="-Xmx2048m"
