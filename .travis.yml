@@ -2,15 +2,14 @@ env:
    global:
      - NDK_VERSION=r9d
      - TERM: dumb
-     - CCACHE: 1
-     - CCACHE_MAXSIZE: 384M
+     #- CCACHE: 1
+     #- CCACHE_MAXSIZE: 384M
 
 notifications:
      email: true
 
 language: android
 
-#sudo: false
 sudo: required
 
 jdk: oraclejdk7
@@ -39,13 +38,13 @@ before_install:
     - export PATH=${PATH}:${ANDROID_NDK_HOME}   
     - echo ${PATH}
     - echo `pwd` 
-    - ulimit -s 1082768
-    - ulimit -a && free -m
-    - df -h
+    #- ulimit -s 1082768
+    #- ulimit -a && free -m
+    #- df -h
     #- export GRADLE_OPTS="-Xmx768m -Xms256m -Xss1m"
-    - export GRADLE_OPTS="-Xmx2048m"
-before_script:
-     - ccache --zero-stats
+    #- export GRADLE_OPTS="-Xmx2048m"
+#before_script:
+    # - ccache --zero-stats
     #- android list targets
     #- echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
     #- emulator -avd test -no-skin -no-audio -no-window &
@@ -58,11 +57,11 @@ script:
     #- TERM=dumb ./gradlew prepareDebugDependencies
     - ./gradlew clean :app:assembleDebug --debug --info
     #- TERM=dumb ./gradlew app::connectedAndroidTest --info
-    - cat /home/travis/build/panhuidan/GithubTest/DataApi/app/build/tmp/compileEditorArmeabi-v7aDebugSharedLibraryEditorMainCpp/output.txt
+    #- cat /home/travis/build/panhuidan/GithubTest/DataApi/app/build/tmp/compileEditorArmeabi-v7aDebugSharedLibraryEditorMainCpp/output.txt
     - cd ..
 
-after_script:
-    - ccache --show-stats
+#after_script:
+    #- ccache --show-stats
 
 deploy:
   provider: releases
@@ -73,5 +72,5 @@ deploy:
   on: 
     #branch: master
     #repo: panhuidan/GithubTest 
-    #tags: true
+    tags: true
     all_branches: true
