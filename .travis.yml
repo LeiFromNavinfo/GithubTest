@@ -42,7 +42,7 @@ before_script:
 script:
     - cd DataApi
     #- TERM=dumb ./gradlew prepareDebugDependencies
-    - TERM=dumb ./gradlew :app:assembleDebug
+    - TERM=dumb ./gradlew :app:assembleDebug --debug --info
     #- TERM=dumb ./gradlew app::connectedAndroidTest --info
     - cd ..
 
