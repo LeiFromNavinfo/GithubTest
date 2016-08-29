@@ -1,9 +1,11 @@
-#machine:
+machine:
   #java:
   #  version: oraclejdk7
-  #environment:
+  environment:
     #ANDROID_HOME: /usr/local/android-sdk-linux
-    #ANDROID_NDK: 
+    ANDROID_NDK: $HOME/android-ndk-r9d
+    ANDROID_NDK_HOME: $ANDROID_NDK
+    PATH: $PATH:$ANDROID_NDK 
 
 general:
   build_dir: DataApi
