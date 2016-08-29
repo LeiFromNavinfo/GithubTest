@@ -15,11 +15,11 @@ dependencies:
 
 test:
   override:
-    - emulator -avd circleci-android22 -no-audio -no-window:
+    - emulator -avd circleci-android22 -no-audio -no-window: 
         background: true
         parallel: true
     - circle-android wait-for-boot
-    build_dir: DataApi
+    - cd DataApi
     #- ./gradlew assembleDebug
     - ./gradlew connectedAndroidTest
     - cp -r ./DataApi/build/outputs $CIRCLE_ARTIFACTS
