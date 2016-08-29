@@ -18,17 +18,13 @@ dependencies:
 
 test:
   override:
-    #- emulator -avd circleci-android22 -no-audio -no-window: 
-        #background: true
-        #parallel: true
-    #- circle-android wait-for-boot 
     - ndk-build
     - cp -r ../libs $CIRCLE_ARTIFACTS
 
-#deployment:
-#  production: testcircledeploy
-#    branch: master
-#    commands:
-#      - ./gradlew publishApkRelease
-#  staging:
-#    branch: master
+deployment:
+  production: testcircledeploy
+    branch: master
+    commands:
+      - ndk-build
+  staging:
+    branch: master
