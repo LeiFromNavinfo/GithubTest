@@ -5,6 +5,9 @@
     #ANDROID_HOME: /usr/local/android-sdk-linux
     #ANDROID_NDK: 
 
+general:
+  build_dir: DataApi
+
 dependencies:
   override:
     - echo y | android update sdk --no-ui --filter "android-23"
@@ -20,8 +23,6 @@ test:
         #parallel: true
     #- circle-android wait-for-boot 
     #- cd DataApi
-    general:
-      build_dir: DataApi
     - ./gradlew assembleDebug
     #- ./gradlew connectedAndroidTest
     - cp -r ./DataApi/build/outputs $CIRCLE_ARTIFACTS
