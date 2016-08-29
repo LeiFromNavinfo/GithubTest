@@ -17,7 +17,7 @@ test:
   override:
     - emulator -avd circleci-android22 -no-audio -no-window:
         background: true
-        parallel:true
+        parallel: true
     - circle-android wait-for-boot
     build_dir: DataApi
     #- ./gradlew assembleDebug
