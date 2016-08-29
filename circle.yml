@@ -31,7 +31,8 @@ test:
         #background: true
         #parallel: true
     #- circle-android wait-for-boot 
-    - ./gradlew :app:assembleDebug --info -PpreDexEnable=false -Pcom.android.build.threadPoolSize=1 -Dorg.gradle.parallel=false -Dorg.gradle.jvmargs="-Xms512m -Xmx512m" -Dorg.gradle.daemon=false
+    #- ./gradlew :app:assembleDebug --info -PpreDexEnable=false -Pcom.android.build.threadPoolSize=1 -Dorg.gradle.parallel=false -Dorg.gradle.jvmargs="-Xms512m -Xmx512m" -Dorg.gradle.daemon=false
+    - ./gradlew clean :app:assembleDebug --info -PdisablePreDex
     #- ./gradlew connectedAndroidTest
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
 
