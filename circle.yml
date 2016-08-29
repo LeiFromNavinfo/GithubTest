@@ -20,6 +20,7 @@ test:
         #parallel: true
     #- circle-android wait-for-boot 
     #- cd DataApi
+    - build_dir: DataApi
     - ./gradlew assembleDebug
     #- ./gradlew connectedAndroidTest
     - cp -r ./DataApi/build/outputs $CIRCLE_ARTIFACTS
