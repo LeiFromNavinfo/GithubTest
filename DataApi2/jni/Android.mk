@@ -1,7 +1,8 @@
 LOCAL_PATH := $(call my-dir)
 
 #ROOT_PATH := /home/travis/build/panhuidan/GithubTest
-ROOT_PATH := /home/ubuntu/GithubTest
+#ROOT_PATH := /home/ubuntu/GithubTest
+ROOT_PATH := ../..
 
 ICONV_PATH := ../../ThirdParty/OpenSource2/libiconv-1.13.1
 ICONV_INCL := $(ROOT_PATH)/ThirdParty/OpenSource2/libiconv-1.13.1
