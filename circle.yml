@@ -23,7 +23,7 @@ test:
         #parallel: true
     #- circle-android wait-for-boot 
     - ndk-build
-    - cp -r app/build/outputs $CIRCLE_ARTIFACTS
+    - cp -r DataApi2/libs $CIRCLE_ARTIFACTS
 
 #deployment:
 #  production: testcircledeploy
