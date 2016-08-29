@@ -4,21 +4,21 @@ machine:
   environment:
     ANDROID_HOME: /usr/local/android-sdk-linux
     NDK_VERSION: r9d
-    ANDROID_NDK: $HOME/android-ndk-$NDK_VERSION
-    ANDROID_NDK_HOME: $ANDROID_NDK
-    PATH: $PATH:$ANDROID_NDK 
+    ANDROID_NDK: ${HOME}/android-ndk-${NDK_VERSION}
+    ANDROID_NDK_HOME: ${ANDROID_NDK}
+    PATH: ${PATH}:${ANDROID_NDK} 
 
 general:
   build_dir: DataApi
 
 dependencies:
   cache_directories:
-    - ~/android-ndk-$NDK_VERSION
+    - ~/android-ndk-${NDK_VERSION}
   pre:
-    - if [ ! -e ~/android-ndk-$NDK_VERSION ]; then wget http://dl.google.com/android/ndk/android-ndk-$NDK_VERSION-linux-x86_64.tar.bz2 && tar -C ~  --bzip2 -xf android-ndk-$NDK_VERSION-linux-x86_64.tar.bz2; fi
+    - if [ ! -e ~/android-ndk-${NDK_VERSION} ]; then wget http://dl.google.com/android/ndk/android-ndk-${NDK_VERSION}-linux-x86_64.tar.bz2 && tar -C ~  --bzip2 -xf android-ndk-${NDK_VERSION}-linux-x86_64.tar.bz2; fi
   override:
     - echo y | android update sdk --no-ui --filter "android-23"
-    - echo y | android update sdk --no-ui --filter "build-tools-23.0.1"
+    - echo y | android update sdk --no-ui --filter "build-tools-23.0.3"
     - echo y | android update sdk --no-ui --filter "extra-android-m2repository"
     - echo y | android update sdk --no-ui --filter "extra-android-support"
     - echo y | android update sdk --no-ui --filter "extra-google-m2repository"
@@ -29,8 +29,6 @@ test:
         #background: true
         #parallel: true
     #- circle-android wait-for-boot 
-    - if [ ! -e ~/android-ndk-$NDK_VERSION ]; then echo "ndk not e"; fi
-    - if [ -e ~/android-ndk-$NDK_VERSION ]; then echo "ndk e"; fi
     - ./gradlew :app:assembleDebug --info
     #- ./gradlew connectedAndroidTest
     - cp -r ./DataApi/build/outputs $CIRCLE_ARTIFACTS
