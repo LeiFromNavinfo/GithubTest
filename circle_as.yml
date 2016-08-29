@@ -1,0 +1,45 @@
+machine:
+  #java:
+  #  version: oraclejdk7
+  environment:
+    ANDROID_HOME: /usr/local/android-sdk-linux
+    NDK_VERSION: r9d
+    ANDROID_NDK: ${HOME}/android-ndk-${NDK_VERSION}
+    ANDROID_NDK_HOME: ${ANDROID_NDK}
+    PATH: ${PATH}:${ANDROID_NDK} 
+    _JAVA_OPTIONS: "-Xms512m -Xmx1024m"
+    GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
+
+general:
+  build_dir: DataApi
+
+dependencies:
+  cache_directories:
+    - ~/android-ndk-${NDK_VERSION}
+  pre:
+    - if [ ! -e ~/android-ndk-${NDK_VERSION} ]; then wget http://dl.google.com/android/ndk/android-ndk-${NDK_VERSION}-linux-x86_64.tar.bz2 && tar -C ~  --bzip2 -xf android-ndk-${NDK_VERSION}-linux-x86_64.tar.bz2; fi
+  override:
+    - echo y | android update sdk --no-ui --filter "android-23"
+    - echo y | android update sdk --no-ui --filter "build-tools-23.0.3"
+    - echo y | android update sdk --no-ui --filter "extra-android-m2repository"
+    - echo y | android update sdk --no-ui --filter "extra-android-support"
+    - echo y | android update sdk --no-ui --filter "extra-google-m2repository"
+
+test:
+  override:
+    #- emulator -avd circleci-android22 -no-audio -no-window: 
+        #background: true
+        #parallel: true
+    #- circle-android wait-for-boot 
+    #- ./gradlew :app:assembleDebug --info -PpreDexEnable=false -Pcom.android.build.threadPoolSize=1 -Dorg.gradle.parallel=false -Dorg.gradle.jvmargs="-Xms512m -Xmx512m" -Dorg.gradle.daemon=false
+    - ./gradlew clean :app:assembleDebug --info -PdisablePreDex
+    #- ./gradlew connectedAndroidTest
+    - cp -r app/build/outputs $CIRCLE_ARTIFACTS
+
+#deployment:
+#  production: testcircledeploy
+#    branch: master
+#    commands:
+#      - ./gradlew publishApkRelease
+#  staging:
+#    branch: master
