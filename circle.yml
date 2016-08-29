@@ -7,6 +7,8 @@ machine:
     ANDROID_NDK: ${HOME}/android-ndk-${NDK_VERSION}
     ANDROID_NDK_HOME: ${ANDROID_NDK}
     PATH: ${PATH}:${ANDROID_NDK} 
+    _JAVA_OPTIONS: "-Xms512m -Xmx1024m"
+    GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
 
 general:
   build_dir: DataApi
