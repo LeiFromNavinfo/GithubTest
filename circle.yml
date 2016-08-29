@@ -1,8 +1,8 @@
-machine:
-  java:
-    version: oraclejdk7
-  environment:
-    ANDROID_HOME: /usr/local/android-sdk-linux
+#machine:
+  #java:
+  #  version: oraclejdk7
+  #environment:
+    #ANDROID_HOME: /usr/local/android-sdk-linux
     #ANDROID_NDK: 
 
 dependencies:
