@@ -19,7 +19,7 @@ test:
         #background: true
         #parallel: true
     #- circle-android wait-for-boot 
-    - cd DataApi
+    #- cd DataApi
     - ./gradlew assembleDebug
     #- ./gradlew connectedAndroidTest
     - cp -r ./DataApi/build/outputs $CIRCLE_ARTIFACTS
