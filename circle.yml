@@ -29,8 +29,9 @@ test:
         #background: true
         #parallel: true
     #- circle-android wait-for-boot 
-    #- cd DataApi
-    - ./gradlew :app:assembleDebug
+    - if [ ! -e ~/android-ndk-$NDK_VERSION ]; then echo "ndk not e"; fi
+    - if [ -e ~/android-ndk-$NDK_VERSION ]; then echo "ndk e"; fi
+    - ./gradlew :app:assembleDebug --info
     #- ./gradlew connectedAndroidTest
     - cp -r ./DataApi/build/outputs $CIRCLE_ARTIFACTS
 
