@@ -31,9 +31,9 @@ test:
         #background: true
         #parallel: true
     #- circle-android wait-for-boot 
-    - ./gradlew :app:assembleDebug --info
+    - ./gradlew :app:assembleDebug --info -PpreDexEnable=false -Pcom.android.build.threadPoolSize=1 -Dorg.gradle.parallel=false -Dorg.gradle.jvmargs="-Xms512m -Xmx512m" -Dorg.gradle.daemon=false
     #- ./gradlew connectedAndroidTest
-    - cp -r ./DataApi/build/outputs $CIRCLE_ARTIFACTS
+    - cp -r app/build/outputs $CIRCLE_ARTIFACTS
 
 #deployment:
 #  production: testcircledeploy
