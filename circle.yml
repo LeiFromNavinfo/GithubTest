@@ -15,16 +15,25 @@ dependencies:
     - ~/android-ndk-${NDK_VERSION}
   pre:
     - if [ ! -e ~/android-ndk-${NDK_VERSION} ]; then wget http://dl.google.com/android/ndk/android-ndk-${NDK_VERSION}-linux-x86_64.tar.bz2 && tar -C ~  --bzip2 -xf android-ndk-${NDK_VERSION}-linux-x86_64.tar.bz2; fi
+  override:
+    - echo y | android update sdk --no-ui --filter "android-23"
+    - echo y | android update sdk --no-ui --filter "build-tools-23.0.2"
+    - echo y | android update sdk --no-ui --filter "extra-android-m2repository"
+    - echo y | android update sdk --no-ui --filter "extra-android-support"
+    - echo y | android update sdk --no-ui --filter "extra-google-m2repository"
 
 test:
   override:
     - ndk-build
     - cp -r ../libs $CIRCLE_ARTIFACTS
+    #- - ./gradlew clean :app:assembleDebug --info -PdisablePreDex
+    #- cp -r app/build/outputs $CIRCLE_ARTIFACTS
 
-#deployment:
-#  production: testcircledeploy
-#    branch: master
-#    commands:
-#      - ndk-build
-#  staging:
-#    branch: master
+deployment:
+  production: testcircledeploy
+    branch: master
+    commands:
+       - ndk-build
+#      - ./gradlew clean :app:assembleDebug
+  staging:
+    branch: master
