@@ -1,0 +1,30 @@
+machine:
+  #java:
+  #  version: oraclejdk7
+  environment:
+    NDK_VERSION: r9d
+    ANDROID_NDK: ${HOME}/android-ndk-${NDK_VERSION}
+    ANDROID_NDK_HOME: ${ANDROID_NDK}
+    PATH: ${PATH}:${ANDROID_NDK} 
+    
+general:
+  build_dir: DataApi2/jni
+
+dependencies:
+  cache_directories:
+    - ~/android-ndk-${NDK_VERSION}
+  pre:
+    - if [ ! -e ~/android-ndk-${NDK_VERSION} ]; then wget http://dl.google.com/android/ndk/android-ndk-${NDK_VERSION}-linux-x86_64.tar.bz2 && tar -C ~  --bzip2 -xf android-ndk-${NDK_VERSION}-linux-x86_64.tar.bz2; fi
+
+test:
+  override:
+    - ndk-build
+    - cp -r ../libs $CIRCLE_ARTIFACTS
+
+#deployment:
+#  production: testcircledeploy
+#    branch: master
+#    commands:
+#      - ndk-build
+#  staging:
+#    branch: master
