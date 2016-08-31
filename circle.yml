@@ -34,6 +34,7 @@ deployment:
     branch: master
     commands:
        - ndk-build
+         -Dorg.gradle.project.track=production
 #      - ./gradlew clean :app:assembleDebug
 #  staging:
 #    branch: master
