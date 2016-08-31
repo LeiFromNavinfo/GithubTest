@@ -35,5 +35,5 @@ deployment:
     commands:
        - ndk-build
 #      - ./gradlew clean :app:assembleDebug
-  staging:
-    branch: master
+#  staging:
+#    branch: master
