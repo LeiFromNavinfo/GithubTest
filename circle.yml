@@ -8,7 +8,7 @@ machine:
     PATH: ${PATH}:${ANDROID_NDK} 
     
 general:
-  build_dir: DataApi2/jni
+  build_dir: DataApi
 
 dependencies:
   cache_directories:
@@ -24,17 +24,14 @@ dependencies:
 
 test:
   override:
-    - ndk-build
-    - cp -r ../libs $CIRCLE_ARTIFACTS
-    #- - ./gradlew clean :app:assembleDebug --info -PdisablePreDex
-    #- cp -r app/build/outputs $CIRCLE_ARTIFACTS
+    - ./gradlew clean :app:assembleDebug --info -PdisablePreDex
+    - cp -r app/build/outputs $CIRCLE_ARTIFACTS
 
 deployment:
   production:
     branch: master
     commands:
-       - ndk-build
+      - ./gradlew clean :app:assembleDebug
          -Dorg.gradle.project.track=production
-#      - ./gradlew clean :app:assembleDebug
 #  staging:
 #    branch: master
