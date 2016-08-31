@@ -30,7 +30,7 @@ test:
     #- cp -r app/build/outputs $CIRCLE_ARTIFACTS
 
 deployment:
-  production: testcircledeploy
+  production:
     branch: master
     commands:
        - ndk-build
