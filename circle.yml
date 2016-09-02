@@ -31,7 +31,7 @@ deployment:
   production:
     branch: master
     commands:
-      - ./gradlew clean :app:assembleDebug
+      - ./gradlew clean :app:assembleRelease
          -Dorg.gradle.project.track=production
 #  staging:
 #    branch: master
